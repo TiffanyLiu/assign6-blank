@@ -10,19 +10,17 @@
 
   <!--引入初始化 Parse 的 js 檔案-->
   <script type="text/javascript" src="js/key.js"></script>
-  <script>
-  var TestObject = Parse.Object.extend("TestObject");
-var testObject = new TestObject();
-testObject.save({foo: "bar"}).then(function(object) {
-  alert("yay! it worked");
-});
-  </script>
   <script type="text/javascript">
     $(document).on('submit','#signUpForm',function(e){
       console.log('signUp submit');
       /* 請閱讀完 html 後在這裡填入送出表單後需要執行的程式碼 */
         // 提示1 : 記得使用 preventDefault 方程 避免表單轉址
       e.preventDefault();
+      var TestObject = Parse.Object.extend("TestObject");
+var testObject = new TestObject();
+testObject.save({foo: "bar"}).then(function(object) {
+  alert("yay! it worked");
+});
       var user = new Parse.User();//創建一筆資料
       
       user.set("username",$('#username').val());
