@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="css/css.css">
 
   <!--引入初始化 Parse 的 js 檔案-->
-  <script type="text/javascript" src="<!--引入初始化 Parse 的 js 檔案-->"></script>
+  <script type="text/javascript" src="js/key.js"></script>
   <script  type="text/javascript">
     $(document).on('submit','#logInForm',function(e){
       console.log('logIn submit');
@@ -17,13 +17,36 @@
         // 提示1 : 記得使用 preventDefault 方程 避免表單轉址
         // 提示2 : 請在使用者登入成功後，自動幫助使用者簽到，
         // 提示3 : 簽到成功後，要將畫面切換到 index 頁面
+      e.preventDefault();
+      var username = $('#username').val() ;
+      var password = $('#password').val() ;
+      consloe.log("登入之後的Parse.User.Current() : ",Parse.User.current() );
 
+      Parse.User.logIn( username , password , {
+        success: function(user){
+          consloe.log("登入之後的Parse.User.Current() : ",Parse.User.current() );
+          alert('登入成功');
+          window.location = 'index.html' ; 
+          var attendanList = Parse.Object.extend("attendanList");
+          var attendan = new AttendanList();
+          attendan.save("username",username);
+          attendan.save("email",Parse,User.current().get('email'));
+        },
+        error: function(user,error){
+          console.log(error);
+          alert(error.message);
+        }
+
+          // body...
+        
+      })
       /* 結束*/
     });//endof logInBtn onSubmit
   </script>
 </head>
 
 <body>
+
   <div class="container">
     <div class="row">
       <form id="logInForm" class="form-horizontal">
