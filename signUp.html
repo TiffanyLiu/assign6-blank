@@ -26,12 +26,12 @@ testObject.save({foo: "bar"}).then(function(object) {
       user.set("username",$('#username').val());
       user.set("email",   $('#email').val());
       user.set("password",$('#password').val());
+      user.set("role",$('input[name=role]:checked').val());
       user.signUp(null,{
         success : function(user){
           console.log(user);
           window.location="index.html";
-          user.save({foo:"bar"}).then(function(object){
-            alert("註冊成功！");
+          alert("註冊成功！");
           })
         },
         error : function(error){
