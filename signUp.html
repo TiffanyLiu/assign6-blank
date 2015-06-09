@@ -21,7 +21,7 @@
       user.set("username",$('#username').val());
       user.set("email",   $('#email').val());
       user.set("password",$('#password').val());
-      use.signUp(null,{
+      user.signUp(null,{
         success : function(user){
           console.log(user);
           window.location="index.html";
