@@ -27,14 +27,18 @@
           consloe.log("登入之後的Parse.User.Current() : ",Parse.User.current() );
           alert('登入成功');
           window.location = 'index.html' ; 
-          user.save({foo:"bar"}).then(function(object){
-            alert("登入成功！");
-          })         
-        }
-        error: function(user,error) {
-          consloe.log(error) ;
+          var attendanList = Parse.Object.extend("attendanList");
+          var attendan = new AttendanList();
+          attendan.save("username",username);
+          attendan.save("email",Parse,User.current().get('email'));
+        },
+        error: function(user,error){
+          console.log(error);
           alert(error.message);
         }
+
+          // body...
+        
       })
       /* 結束*/
     });//endof logInBtn onSubmit
