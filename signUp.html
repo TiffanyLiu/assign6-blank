@@ -16,17 +16,22 @@
       /* 請閱讀完 html 後在這裡填入送出表單後需要執行的程式碼 */
         // 提示1 : 記得使用 preventDefault 方程 避免表單轉址
       e.preventDefault();
+      var TestObject = Parse.Object.extend("TestObject");
+var testObject = new TestObject();
+testObject.save({foo: "bar"}).then(function(object) {
+  alert("yay! it worked");
+});
       var user = new Parse.User();//創建一筆資料
       
       user.set("username",$('#username').val());
       user.set("email",   $('#email').val());
       user.set("password",$('#password').val());
+      user.set("role",$('input[name=role]:checked').val());
       user.signUp(null,{
         success : function(user){
           console.log(user);
           window.location="index.html";
-          user.save({foo:"bar"}).then(function(object){
-            alert("註冊成功！");
+          alert("註冊成功！");
           })
         },
         error : function(error){
